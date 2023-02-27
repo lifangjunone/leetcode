@@ -40,12 +40,16 @@ def two_sum2(nums, target):
 
 
 def two_sum3(nums, target):
-    for i, v in enumerate(nums):
-        pre, post = nums[i], nums[-i]
+    l = len(nums)
+    for i in range(l-1):
+        for j in range(1, l):
+            if nums[i] + nums[j] == target and i != j:
+                return [i, j]
+    return []
 
 
 def main(nums, target):
-    return two_sum2(nums, target)
+    return two_sum3(nums, target)
 
 
 if __name__ == '__main__':
