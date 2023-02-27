@@ -40,16 +40,44 @@ def two_sum2(nums, target):
 
 
 def two_sum3(nums, target):
+    """
+    暴力两层for循环
+    :param nums:
+    :param target:
+    :return:
+    """
     l = len(nums)
     for i in range(l-1):
-        for j in range(1, l):
-            if nums[i] + nums[j] == target and i != j:
+        for j in range(i+1, l):
+            if nums[i] + nums[j] == target:
                 return [i, j]
     return []
 
 
+def two_sum4(nums, target):
+    """
+    双指针的基于有序数组，且为获取数字而非索引，不然排序之后索引必须得记下来
+    :param nums:
+    :param target:
+    :return:
+    """
+    nums_sort = sorted(nums)
+    l = len(nums_sort) - 1
+    left = 0
+    right = l
+    while left < right:
+        res = nums_sort[left] + nums_sort[right]
+        if res == target:
+            return [left, right]
+        elif res < target:
+            left += 1
+        elif res > target:
+            right -= 1
+    return []
+
+
 def main(nums, target):
-    return two_sum3(nums, target)
+    return two_sum4(nums, target)
 
 
 if __name__ == '__main__':
